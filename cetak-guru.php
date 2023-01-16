@@ -14,8 +14,6 @@ if(isset($_POST["refresh"])){
 
     $guru = query("SELECT * FROM guru, golongan where golongan.kd_golongan=guru.kd_golongan and guru.kd_golongan = '$kd_golongan'");
 }
-
-
 $user_type = $_SESSION['user_type'] == 'Super Admin';
 ?>
 

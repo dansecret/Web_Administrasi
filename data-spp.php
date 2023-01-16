@@ -28,7 +28,7 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
 <body>
     <header>
         <div class="welcome">
-            <h1>Administrasi Sekolah</h1>
+            <h1>Administrasi R-SCUAD</h1>
             <p>Selamat datang,
                 <?php
                 echo $_SESSION['username'];
@@ -48,7 +48,7 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
     </header>
     <section id="data-spp" class="container">
         <div class="top-data">
-            <h1>Data Pembayaran SPP</h1>
+            <h1>Data Pembelian</h1>
             <button type="button" class="btn btn-primary"><a href="tambah-spp.php"
                     style="color: #fff; text-decoration:none;"> + Tambah Data</a></button>
         </div>
@@ -58,11 +58,13 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
                     <tr>
                         <th scope="col">No.</th>
                         <th scope="col">No Kuitansi</th>
-                        <th scope="col">NIS</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Tanggal Bayar</th>
+                        <!-- <th scope="col">NIS</th> -->
+                        <th scope="col">Nama Barang</th>
+                        <th scope="col">Tanggal Beli</th>
+                        <th scope="col">Jumlah</th>
                         <th scope="col">Total</th>
                         <th scope="col">Keterangan</th>
+                        <th scope="col">Nota</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -73,11 +75,14 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
                     <tr>
                         <td scope="row"><?= $i; ?></td>
                         <td scope="row"><?= $row["no_kuitansi"]; ?></td>
-                        <td><?= $row["nis"]; ?></td>
+                        <!-- <td><?= $row["nis"]; ?></td> -->
                         <td><?= $row["nama"]; ?></td>
                         <td><?= $row["tgl_bayar"]; ?></td>
                         <td><?= $row["total"]; ?></td>
                         <td><?= $row["ket_bayar"]; ?></td>
+                        <td><?= $row["ket_bayar"]; ?></td>
+                        <td><?= $row["ket_bayar"]; ?></td>
+                        
                         <td class="button-action">
                             <a href="ubah-spp.php?no_kuitansi=<?= $row["no_kuitansi"]; ?>"><button type="button"
                                     class="btn btn-warning">Edit</button></a>

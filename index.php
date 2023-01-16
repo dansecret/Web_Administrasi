@@ -18,7 +18,7 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Utama</title>
-    <link rel="stylesheet" href="assets/css/mains.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 </head>
@@ -26,7 +26,7 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
 <body style="background-color: #23346c;">
     <header>
         <div class="welcome">
-            <h1>Administrasi Sekolah</h1>
+            <h1>Administrasi R-SCUAD</h1>
             <p>Selamat datang,
                 <?php 
                 echo $_SESSION['username'];
@@ -45,71 +45,74 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
         <a href="logout.php"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a>
     </header>
     <section id="main-menu">
-        <div class="menu" style="margin-top: 100px;">
-            <div class="data-siswa">
-                <a href="data-siswa.php">
+        <div class="menu" style="margin-top: 150px;">
+            <div class="data-siswa" style="font-size: 20px;" >
+                <a href="data-anggota.php">
                     <img src="assets/img/graduates.png" alt="">
-                    <p>Data Siswa</p>
+                    <p>Data Anggota</p>
                 </a>
             </div>
-            <div class="data-guru">
+            <div class="data-guru" style="font-size: 20px;">
                 <a href="data-guru.php">
                     <img src="assets/img/teacher.png" alt="">
-                    <p>Data Guru</p>
+                    <p>Data Barang</p>
                 </a>
             </div>
-            <div class="data-spp">
+            <div class="data-spp" style="font-size: 20px;">
                 <a href="data-spp.php">
                     <img src="assets/img/receipt.png" alt="">
-                    <p>Pembayaran SPP</p>
+                    <p>Pembelian Barang</p>
                 </a>
             </div>
-            <!-- <div class="data-gaji">
-                <a href="">
-                    <img src="assets/img/calendar.png" alt="">
-                    <p>Penyaluran Gaji</p>
+            <div class="data-guru" style="font-size: 20px;">
+                <a href="data-barangterpakai.php">
+                    <img src="assets/img/teacher.png" alt="">
+                    <p>Barang Terpakai</p>
                 </a>
-            </div> -->
-            <div class="jadwal-pelajaran">
+            </div>
+            <!-- <div class="jadwal-pelajaran">
                 <a href="data-jadwal.php">
                     <img src="assets/img/schedule.png" alt="">
-                    <p>Jadwal Pelajaran</p>
+                    <p></p>
                 </a>
-            </div>
-            <div class="robot1">
+            </div> -->
+        </div>
+
+        <div class="menu1" style="margin-top: 100px;">
+        <div class="robot1" style="font-size: 20px;">
                 <a href="#">
                     <img src="assets/img/robot-active.png" alt="">
-                    <p>Robot 1 - Ahmad</p>
+                    <p>Robot 1 <br>AHMAD</p>
                 </a>
             </div>
-            <div class="robot2">
+            <div class="robot2" style="font-size: 20px;">
                 <a href="#">
                     <img src="assets/img/robot-active.png" alt="">
-                    <p>Robot 2 - Dahlan</p>
+                    <p>Robot 2 <br>DAHLAN</p>
                 </a>
             </div>
-            <div class="robot3">
+            <div class="robot3" style="font-size: 20px;">
                 <a href="#">
                     <img src="assets/img/robot-active.png" alt="">
-                    <p>Robot 3 - Darwis</p>
+                    <p>Robot 3 <br>DARWIS</p>
                 </a>
             </div>
-            <div class="robot4">
+            <div class="robot4" style="font-size: 20px;">
                 <a href="#">
                     <img src="assets/img/robot-active.png" alt="">
-                    <p>Robot 4 <br> Botis</p>
+                    <p>Robot 4 <br>BOTIS</p>
                 </a>
             </div>
-            <div class="robot5">
+            <div class="robot5" style="font-size: 20px;">
                 <a href="#">
                     <img src="assets/img/robot-active.png" alt="">
-                    <p>Robot 5  Dummy</p>
+                    <p>Robot 5 <br>DUMMY</p>
                 </a>
             </div>
-            <div class="robot6">
+            <div class="robot6" style="font-size: 20px;">
                 <a href="#">
                     <img src="assets/img/robot-active.png" alt="">
-                    <p>Robot 6 - Fabio</p>
+                    <p>Robot 4 <br> FABIO</p>
                 </a>
             </div>
         </div>

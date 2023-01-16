@@ -28,7 +28,7 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
 <body>
     <header>
         <div class="welcome">
-            <h1>Administrasi Sekolah</h1>
+            <h1>Administrasi R-SCUAD</h1>
             <p>Selamat datang,
                 <?php
                 echo $_SESSION['username'];
@@ -48,7 +48,7 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
     </header>
     <section id="data-siswa" class="container">
         <div class="top-data">
-            <h1>Data Siswa</h1>
+            <h1>Data Anggota</h1>
             <button type="button" class="btn btn-primary"><a href="tambah-siswa.php"
                     style="color: #fff; text-decoration:none; "> + Tambah Data</a></button>
             <button type="button" class="btn btn-secondary" style="margin-right:20px;"><a href="cetak-siswa.php"
@@ -59,11 +59,10 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
                 <thead>
                     <tr>
                         <th scope="col">No.</th>
-                        <th scope="col">NIS</th>
+                        <th scope="col">NIM</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Jenis Kelamin</th>
                         <th scope="col">Alamat</th>
-                        <th scope="col">Tingkat</th>
                         <th scope="col">Jurusan</th>
                         <th scope="col">Aksi</th>
                     </tr>
@@ -78,7 +77,6 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
                         <td><?= $row["nama"]; ?></td>
                         <td><?= $row["jns_kelamin"]; ?></td>
                         <td><?= $row["alamat"]; ?></td>
-                        <td><?= $row["tingkat"]; ?></td>
                         <td><?= $row["jurusan"]; ?></td>
                         <td class="button-action">
                             <a href="ubah-siswa.php?nis=<?= $row["nis"]; ?>"><button type="button"

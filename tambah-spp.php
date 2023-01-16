@@ -38,14 +38,14 @@ if( isset($_POST["submit"]) ) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Data SPP</title>
+    <title>Tambah Data Pembelian</title>
     <link rel="stylesheet" href="assets/css/form.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header class="container">
-        <h3>Tambah Data SPP</h3>
+        <h3>Tambah Data Pembelian</h3>
     </header>
     <section id="tambah-data-spp" class="container">
 
@@ -57,7 +57,7 @@ if( isset($_POST["submit"]) ) {
     </div>
   </div>
   <div class="form-group row">
-    <label for="nis" class="col-4 col-form-label">NIS</label> 
+    <label for="nis" class="col-4 col-form-label">Nama Barang</label> 
     <div class="col-8">
       <input id="nis" name="nis" placeholder="masukkan nis" type="text" class="form-control" required="required">
     </div>
