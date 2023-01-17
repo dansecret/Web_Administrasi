@@ -7,7 +7,7 @@ if( !isset($_SESSION["login"]) ) {
 }
 $kd_golongan = '';
 
-require 'functions.php';
+require '../../functions.php';
 $guru = query("SELECT * FROM guru, golongan where golongan.kd_golongan=guru.kd_golongan");
 if(isset($_POST["refresh"])){
     $kd_golongan = $_POST["kd_golongan"];
@@ -24,9 +24,9 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cetak Data Guru</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/print.css">
+    <title>Cetak Data Barang</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/print.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -34,7 +34,7 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
 <body>
     <section id="data-guru" class="container">
         <div class="top-data">
-            <h1><span class="hide-on-print">Cetak</span> Data Guru</h1>
+            <h1><span class="hide-on-print">Cetak</span> Data Barang</h1>
             <div class="pilihkelas hide-on-print" style="width: 60%; float:right;">
                 <form action="" method="post">
                     <div class="form-group row">
@@ -48,7 +48,7 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
                         </select>                        
                     </div>
                     <div class="buttons">
-                        <button type="button" class="btn btn-danger" style="margin-right:10px;"><a href="data-guru.php" style="color: #fff; text-decoration:none; "> Batal</a></button>
+                        <button type="button" class="btn btn-danger" style="margin-right:10px;"><a href="data-barang.php" style="color: #fff; text-decoration:none; "> Batal</a></button>
                         <button id="print" onclick="printTable()" class="btn btn-secondary" style="margin-right: 10px;" >Cetak</button>
                         <button id="show-all" class="btn btn-info" style="margin-right: 10px;" >Semua</button>
                         <button name="refresh" type="submit" class="btn btn-success" style="margin-right: 10px;" >Refresh</button>

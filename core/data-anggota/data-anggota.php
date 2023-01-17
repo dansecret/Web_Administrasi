@@ -6,7 +6,7 @@ if (!isset($_SESSION["login"])) {
     exit;
 }
 
-require 'functions.php';
+require '../../functions.php';
 $siswa = query("SELECT * FROM siswa, kelas where kelas.kd_kelas=siswa.kd_kelas");
 
 $user_type = $_SESSION['user_type'] == 'Super Admin';
@@ -20,7 +20,7 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Siswa</title>
-    <link rel="stylesheet" href="assets/css/mains.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
@@ -37,7 +37,7 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
         </div>
         <nav>
             <ul>
-                <li><a href="index.php">Menu Utama</a></li>
+                <li><a href="../../index.php">Menu Utama</a></li>
                 <?php if ($user_type) {
                 ?>
                 <li id="list-admin"><a href="data-admin.php">List Admin</a></li>
@@ -49,9 +49,9 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
     <section id="data-siswa" class="container">
         <div class="top-data">
             <h1>Data Anggota</h1>
-            <button type="button" class="btn btn-primary"><a href="tambah-siswa.php"
+            <button type="button" class="btn btn-primary"><a href="tambah-anggota.php"
                     style="color: #fff; text-decoration:none; "> + Tambah Data</a></button>
-            <button type="button" class="btn btn-secondary" style="margin-right:20px;"><a href="cetak-siswa.php"
+            <button type="button" class="btn btn-secondary" style="margin-right:20px;"><a href="cetak-anggota.php"
                     style="color: #fff; text-decoration:none; "> Cetak Data</a></button>
         </div>
         <div class="list-siswa">
@@ -64,7 +64,10 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
                         <th scope="col">Jenis Kelamin</th>
                         <th scope="col">Alamat</th>
                         <th scope="col">Jurusan</th>
-                        <th scope="col">Aksi</th>
+                        <?php if($user_type){
+                        ?>
+                            <th scope="col">Aksi</th> 
+                        <?php } ?>  
                     </tr>
                 </thead>
                 <tbody>
@@ -78,12 +81,15 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
                         <td><?= $row["jns_kelamin"]; ?></td>
                         <td><?= $row["alamat"]; ?></td>
                         <td><?= $row["jurusan"]; ?></td>
+                        <?php if($user_type){
+                        ?>
                         <td class="button-action">
-                            <a href="ubah-siswa.php?nis=<?= $row["nis"]; ?>"><button type="button"
+                            <a href="ubah-anggota.php?nis=<?= $row["nis"]; ?>"><button type="button"
                                     class="btn btn-warning">Edit</button></a>
-                            <a href="hapus-siswa.php?nis=<?= $row["nis"]; ?>"><button type="button"
+                            <a href="hapus-anggota.php?nis=<?= $row["nis"]; ?>"><button type="button"
                                     class="btn btn-danger">Delete</button></a>
                         </td>
+                        <?php } ?>  
                     </tr>
                     <?php $i++; ?>
                     <?php endforeach; ?>

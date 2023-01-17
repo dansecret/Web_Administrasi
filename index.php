@@ -47,19 +47,19 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
     <section id="main-menu">
         <div class="menu" style="margin-top: 150px;">
             <div class="data-siswa" style="font-size: 20px;" >
-                <a href="data-anggota.php">
+                <a href="core/data-anggota/data-anggota.php">
                     <img src="assets/img/graduates.png" alt="">
                     <p>Data Anggota</p>
                 </a>
             </div>
             <div class="data-guru" style="font-size: 20px;">
-                <a href="data-guru.php">
+                <a href="core/data-barang/data-barang.php">
                     <img src="assets/img/teacher.png" alt="">
                     <p>Data Barang</p>
                 </a>
             </div>
             <div class="data-spp" style="font-size: 20px;">
-                <a href="data-spp.php">
+                <a href="data-pembelian.php">
                     <img src="assets/img/receipt.png" alt="">
                     <p>Pembelian Barang</p>
                 </a>

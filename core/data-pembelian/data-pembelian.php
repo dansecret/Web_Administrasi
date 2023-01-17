@@ -20,7 +20,7 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data SPP</title>
-    <link rel="stylesheet" href="assets/css/mains.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
@@ -65,7 +65,10 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
                         <th scope="col">Total</th>
                         <th scope="col">Keterangan</th>
                         <th scope="col">Nota</th>
+                        <?php if($user_type){
+                        ?>
                         <th scope="col">Aksi</th>
+                        <?php } ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -82,7 +85,8 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
                         <td><?= $row["ket_bayar"]; ?></td>
                         <td><?= $row["ket_bayar"]; ?></td>
                         <td><?= $row["ket_bayar"]; ?></td>
-                        
+                        <?php if($user_type){
+                        ?>
                         <td class="button-action">
                             <a href="ubah-spp.php?no_kuitansi=<?= $row["no_kuitansi"]; ?>"><button type="button"
                                     class="btn btn-warning">Edit</button></a>
@@ -91,6 +95,7 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
                             <a href="cetak-spp.php?no_kuitansi=<?= $row["no_kuitansi"]; ?>"><i class="fa fa-print fa-lg"
                                     aria-hidden="true" style="color: #000; padding:5px 10px"></i></a>
                         </td>
+                        <?php } ?>
                     </tr>
                     <?php $i++; ?>
                     <?php endforeach; ?>

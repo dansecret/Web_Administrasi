@@ -1,5 +1,5 @@
 <?php 
-require 'functions.php';
+require '../../functions.php';
 
 $nis = $_GET["nis"];
 
@@ -7,14 +7,14 @@ if( hapusSiswa($nis) > 0 ) {
 	echo "
 		<script>
 			alert('data berhasil dihapus!');
-			document.location.href = 'data-siswa.php';
+			document.location.href = 'data-anggota.php';
 		</script>
 	";
 } else {
 	echo "
 		<script>
 			alert('data gagal dihapus!');
-			document.location.href = 'data-siswa.php';
+			document.location.href = 'data-anggota.php';
 		</script>
 	";
 }

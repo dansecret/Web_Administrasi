@@ -5,7 +5,7 @@ if( !isset($_SESSION["login"]) ) {
 	header("Location: login.php");
 	exit;
 }
-require 'functions.php';
+require '../../functions.php';
 
 // cek apakah tombol submit sudah ditekan atau belum
 if( isset($_POST["submit"]) ) {
@@ -15,14 +15,14 @@ if( isset($_POST["submit"]) ) {
 		echo "
 			<script>
 				alert('data berhasil ditambahkan!');
-				document.location.href = 'data-guru.php';
+				document.location.href = 'data-barang.php';
 			</script>
 		";
 	} else {
 		echo "
 			<script>
 				alert('data gagal ditambahkan!');
-				document.location.href = 'data-guru.php';
+				document.location.href = 'data-barang.php';
 			</script>
 		";
 	}
