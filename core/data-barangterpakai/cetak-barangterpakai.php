@@ -5,13 +5,14 @@ if( !isset($_SESSION["login"]) ) {
 	header("Location: login.php");
 	exit;
 }
+$kd_golongan = '';
 
 require '../../functions.php';
-$barang = query("SELECT * FROM barang ");
+$guru = query("SELECT * FROM guru, golongan where golongan.kd_golongan=guru.kd_golongan");
 if(isset($_POST["refresh"])){
     $kd_golongan = $_POST["kd_golongan"];
 
-    $barang = query("SELECT * FROM guru, golongan where golongan.kd_golongan=guru.kd_golongan and guru.kd_golongan = '$kd_golongan'");
+    $guru = query("SELECT * FROM guru, golongan where golongan.kd_golongan=guru.kd_golongan and guru.kd_golongan = '$kd_golongan'");
 }
 $user_type = $_SESSION['user_type'] == 'Super Admin';
 ?>
@@ -33,7 +34,7 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
 <body>
     <section id="data-guru" class="container">
         <div class="top-data">
-            <h1><span class="hide-on-print">Cetak</span> Data Barang</h1>
+            <h1><span class="hide-on-print">Cetak</span> Data Barang Terpakai</h1>
             <div class="pilihkelas hide-on-print" style="width: 60%; float:right;">
                 <form action="" method="post">
                     <div class="form-group row">
@@ -60,22 +61,30 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
             <thead class="thead-light">
                     <tr>
                         <th scope="col">No.</th>
-                        <th scope="col">Kode Barang</th>
-                        <th scope="col">Nama Barang</th>
-                        <th scope="col">Deskripsi</th>             
-                        <th scope="col">Stock</th>
+                        <th scope="col">NIP</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Jenis Kelamin</th>             
+                        <th scope="col">Tanggal Lahir</th>
+                        <th scope="col">Alamat</th>
+                        <th scope="col">No. Telp</th>
+                        <th scope="col">Bidang Studi</th>
+                        <th scope="col">Kode Golongan</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach( $barang as $row ) : ?>
+                    <?php foreach( $guru as $row ) : ?>
 
                     <tr>
                         <td scope="row"><?= $i; ?></td>
-                        <td scope="row"><?= $row["id_barang"]; ?></td>
-                        <td><?= $row["nama_barang"]; ?></td>
-                        <td><?= $row["deskripsi"]; ?></td>
-                        <td><?= $row["stock"]; ?></td>
+                        <td scope="row"><?= $row["nip"]; ?></td>
+                        <td><?= $row["nama"]; ?></td>
+                        <td><?= $row["jns_kelamin"]; ?></td>
+                        <td><?= $row["tgl_lahir"]; ?></td>
+                        <td><?= $row["alamat"]; ?></td>
+                        <td><?= $row["no_telp"]; ?></td>
+                        <td><?= $row["bidang_studi"]; ?></td>
+                        <td><?= $row["kd_golongan"]; ?></td>
                     </tr>
                     <?php $i++; ?>
 	                <?php endforeach; ?>

@@ -6,7 +6,7 @@ if( !isset($_SESSION["login"]) ) {
 	exit;
 }
 
-require 'functions.php';
+require '../../functions.php';
 $guru = query("SELECT * FROM guru, golongan where golongan.kd_golongan=guru.kd_golongan");
 
 $user_type = $_SESSION['user_type'] == 'Super Admin';
@@ -20,7 +20,7 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Barang Terpakai</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
@@ -36,7 +36,7 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
         </div>
         <nav>
         <ul>
-            <li><a href="index.php">Menu Utama</a></li>
+            <li><a href="../../index.php">Menu Utama</a></li>
             <?php if($user_type){
             ?>
             <li id="list-admin"><a href="data-admin.php">List Admin</a></li>
@@ -55,8 +55,8 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
                     <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                 </div>
             </form> -->
-            <button type="button" class="btn btn-primary"><a href="tambah-guru.php" style="color: #fff; text-decoration:none;"> + Tambah Data</a></button>
-            <button type="button" class="btn btn-secondary" style="margin-right:20px;"><a href="cetak-guru.php" style="color: #fff; text-decoration:none; "> Cetak Data</a></button>
+            <button type="button" class="btn btn-primary"><a href="tambah-barangterpakai.php" style="color: #fff; text-decoration:none;"> + Tambah Data</a></button>
+            <button type="button" class="btn btn-secondary" style="margin-right:20px;"><a href="cetak-barangterpakai.php" style="color: #fff; text-decoration:none; "> Cetak Data</a></button>
 
         </div>
         <div class="list-guru">
@@ -87,8 +87,8 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
                         <?php if($user_type){
                         ?>
                         <td class="button-action">
-                        <a href="ubah-guru.php?nip=<?= $row["nip"]; ?>" ><button type="button" class="btn btn-warning">Edit</button></a>
-                        <a href="hapus-guru.php?nip=<?= $row["nip"]; ?>" ><button type="button" class="btn btn-danger">Delete</button></a>
+                        <a href="ubah-barangterpakai.php?nip=<?= $row["nip"]; ?>" ><button type="button" class="btn btn-warning">Edit</button></a>
+                        <a href="hapus-barangterpakai.php?nip=<?= $row["nip"]; ?>" ><button type="button" class="btn btn-danger">Delete</button></a>
                         </td>
                         <?php }?>
                     </tr>

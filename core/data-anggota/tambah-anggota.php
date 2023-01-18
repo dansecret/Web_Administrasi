@@ -11,7 +11,7 @@ require '../../functions.php';
 if (isset($_POST["submit"])) {
 
     // cek apakah data berhasil di tambahkan atau tidak
-    if (tambahSiswa($_POST) > 0) {
+    if (tambahAnggota($_POST) > 0) {
         echo "
 			<script>
 				alert('data berhasil ditambahkan!');
@@ -37,30 +37,30 @@ if (isset($_POST["submit"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Data Siswa</title>
-    <link rel="stylesheet" href="assets/css/form.css">
+    <title>Tambah Data Anggota</title>
+    <link rel="stylesheet" href="../../assets/css/form.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
     <header class="container">
-        <h3>Tambah Data Siswa</h3>
+        <h3>Tambah Data Anggota</h3>
     </header>
-    <section id="tambah-data-siswa" class="container">
+    <section id="tambah-data-Anggota" class="container">
 
         <form action="" method="post" enctype="multipart/form-data">
             <div class="form-group row">
-                <label for="nis" class="col-4 col-form-label">NIS</label>
+                <label for="nim" class="col-4 col-form-label">NIM</label>
                 <div class="col-8">
-                    <input id="nis" name="nis" placeholder="masukkan nis siswa" type="text" class="form-control"
+                    <input id="nim" name="nim" placeholder="Masukan Nim Anggota" type="text" class="form-control"
                         required="required">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="nama" class="col-4 col-form-label">Nama</label>
                 <div class="col-8">
-                    <input id="nama" name="nama" placeholder="masukkan nama siswa" type="text" class="form-control"
+                    <input id="nama" name="nama" placeholder="Masukan Nama Anggota" type="text" class="form-control"
                         required="required">
                 </div>
             </div>
@@ -86,25 +86,16 @@ if (isset($_POST["submit"])) {
                 </div>
             </div>
             <div class="form-group row">
-                <label for="kd_kelas" class="col-4 col-form-label">Kelas</label>
+                <label for="kd_kelas" class="col-4 col-form-label">Program Studi</label>
                 <div class="col-8">
-                    <select id="kd_kelas" name="kd_kelas" class="custom-select">
-                        <option value="B100">10 Bahasa</option>
-                        <option value="B110">11 Bahasa</option>
-                        <option value="B120">12 Bahasa</option>
-                        <option value="M100">10 MIPA</option>
-                        <option value="M110">11 MIPA</option>
-                        <option value="M120">12 MIPA</option>
-                        <option value="S100">10 Sosial</option>
-                        <option value="S110">11 Sosial</option>
-                        <option value="S120">12 Sosial</option>
-                    </select>
+                    <input id="jurusan" name="jurusan" placeholder="Masukan Jurusan Anggota" type="text" class="form-control"
+                        required="required">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="offset-4 col-8">
                     <button name="submit" type="submit" class="btn btn-success">Submit</button>
-                    <button name="submit" type="submit" class="btn btn-danger"><a href="data-siswa.php"
+                    <button name="submit" type="submit" class="btn btn-danger"><a href="data-anggota.php"
                             style="color: #fff; text-decoration:none; ">Cancel</a></button>
                 </div>
             </div>

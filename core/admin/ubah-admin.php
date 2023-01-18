@@ -5,24 +5,37 @@ if( !isset($_SESSION["login"]) ) {
 	header("Location: login.php");
 	exit;
 }
+require '../../functions.php';
 
-require 'functions.php';
+// ambil data di URL
+$id = $_GET["id"];
 
+// query data mahasiswa berdasarkan id
+$users = query("SELECT * FROM users WHERE id = $id")[0];
+
+
+// cek apakah tombol submit sudah ditekan atau belum
 if( isset($_POST["submit"]) ) {
-
-	if( registrasi($_POST) > 0 ) {
-		echo "<script>
-				alert('admin baru berhasil ditambahkan!');
-                document.location.href = 'data-admin.php';
-			  </script>";
+	
+	// cek apakah data berhasil diubah atau tidak
+	if( ubahAdmin($_POST) > 0 ) {
+		echo "
+			<script>
+				alert('data berhasil diubah!');
+				document.location.href = 'data-admin.php';
+			</script>
+		";
 	} else {
-		echo mysqli_error($conn);
+		echo "
+			<script>
+				alert('data gagal diubah!');
+			</script>
+		";
 	}
 
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,28 +43,29 @@ if( isset($_POST["submit"]) ) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Admin</title>
-    <link rel="stylesheet" href="assets/css/form.css">
+    <title>Ubah Data Admin</title>
+    <link rel="stylesheet" href="../../assets/css/form.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header class="container">
-        <h3>Tambah Admin</h3>
+        <h3>Ubah Data Admin</h3>
     </header>
-    <section id="tambah-admin" class="container">
+    <section id="edit-data-admin" class="container">
 
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<?= $users["id"]; ?>">
         <div class="form-group row">
             <label for="username" class="col-4 col-form-label">Username</label> 
             <div class="col-8">
-            <input id="username" name="username" placeholder="masukkan username" type="text" class="form-control" required="required">
+            <input id="username" name="username" placeholder="masukkan username" type="text" class="form-control" required="required" value="<?= $users["username"]; ?>">
             </div>
         </div>
         <div class="form-group row">
             <label for="password" class="col-4 col-form-label">Password</label> 
             <div class="col-8">
-            <input id="password" name="password" placeholder="masukkan password" type="password" class="form-control">
+            <input id="password" name="password" placeholder="masukkan password baru" type="password" class="form-control">
             </div>
         </div>
         <div class="form-group row">
@@ -64,8 +78,8 @@ if( isset($_POST["submit"]) ) {
             <label for="user_type" class="col-4 col-form-label">Tipe User</label> 
             <div class="col-8">
             <select id="user_type" name="user_type" class="custom-select">
-                <option value="Admin">Admin</option>
-                <option value="Super Admin">Super Admin</option>
+                <option value="Admin" <?=$users['user_type'] == 'Admin' ? ' selected="selected"' : '';?>>Admin</option>
+                <option value="Super Admin" <?=$users['user_type'] == 'Super Admin' ? ' selected="selected"' : '';?>>Super Admin</option>
             </select>
             </div>
         </div> 

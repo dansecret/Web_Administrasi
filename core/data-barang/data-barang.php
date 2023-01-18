@@ -7,7 +7,7 @@ if( !isset($_SESSION["login"]) ) {
 }
 
 require '../../functions.php';
-$guru = query("SELECT * FROM guru, golongan where golongan.kd_golongan=guru.kd_golongan");
+$barang = query("SELECT * FROM barang ");
 
 $user_type = $_SESSION['user_type'] == 'Super Admin';
 ?>
@@ -43,9 +43,9 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
             <?php } ?>
         </ul>
         </nav>
-        <a href="logout.php"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a>
+        <a href="../../logout.php"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a>
     </header>
-    <section id="data-guru" class="container">
+    <section id="data-barang" class="container">
         <div class="top-data">
             <h1>Data Barang</h1>
                         <!-- Navbar Search-->
@@ -59,7 +59,7 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
             <button type="button" class="btn btn-secondary" style="margin-right:20px;"><a href="cetak-barang.php" style="color: #fff; text-decoration:none; "> Cetak Data</a></button>
 
         </div>
-        <div class="list-guru">
+        <div class="list-barang">
             <table class="table table-hover table-sm">
                 <thead>
                     <tr>
@@ -76,19 +76,19 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach( $guru as $row ) : ?>
+                    <?php foreach( $barang as $row ) : ?>
 
                     <tr>
                         <td scope="row"><?= $i; ?></td>
-                        <td scope="row"><?= $row["nip"]; ?></td>
-                        <td><?= $row["nama"]; ?></td>
-                        <td><?= $row["jns_kelamin"]; ?></td>
-                        <td><?= $row["tgl_lahir"]; ?></td>
+                        <td><?= $row["id_barang"]; ?></td>
+                        <td><?= $row["nama_barang"]; ?></td>
+                        <td><?= $row["deskripsi"]; ?></td>
+                        <td><?= $row["stock"]; ?></td>
                         <?php if($user_type){
                         ?>
                         <td class="button-action">
-                        <a href="ubah-barang.php?nip=<?= $row["nip"]; ?>" ><button type="button" class="btn btn-warning">Edit</button></a>
-                        <a href="hapus-barang.php?nip=<?= $row["nip"]; ?>" ><button type="button" class="btn btn-danger">Delete</button></a>
+                        <a href="ubah-barang.php?id_barang=<?= $row["id_barang"]; ?>" ><button type="button" class="btn btn-warning">Edit</button></a>
+                        <a href="hapus-barang.php?id_barang=<?= $row["id_barang"]; ?>" ><button type="button" class="btn btn-danger">Delete</button></a>
                         </td>
                         <?php } ?>
                     </tr>

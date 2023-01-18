@@ -1,9 +1,9 @@
 <?php 
 require '../../functions.php';
 
-$nis = $_GET["nis"];
+$nim = $_GET["nim"];
 
-if( hapusSiswa($nis) > 0 ) {
+if( hapusAnggota($nim) > 0 ) {
 	echo "
 		<script>
 			alert('data berhasil dihapus!');

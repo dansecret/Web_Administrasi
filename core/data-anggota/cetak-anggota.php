@@ -8,12 +8,12 @@ if (!isset($_SESSION["login"])) {
 
 
 require '../../functions.php';
-$siswa = query("SELECT * FROM siswa, kelas where kelas.kd_kelas=siswa.kd_kelas");
-$kd_kelas = '';
+$anggota = query("SELECT * FROM anggota");
+$jurusan = '';
 if (isset($_POST["refresh"])) {
-    $kd_kelas = $_POST["kd_kelas"];
+    $jurusan = $_POST["jurusan"];
 
-    $siswa = query("SELECT * FROM siswa, kelas where kelas.kd_kelas=siswa.kd_kelas and siswa.kd_kelas = '$kd_kelas'");
+    $anggota = query("SELECT * FROM anggota where jurusan=jurusan and anggota.jurusan = 'jurusan'");
 }
 
 
@@ -35,34 +35,15 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
 </head>
 
 <body>
-    <section id="data-siswa" class="container">
+    <section id="data-anggota" class="container">
         <div class="top-data">
             <h1><span class="hide-on-print">Cetak</span> Data Anggota</h1>
-            <div class="pilihkelas hide-on-print" style="width: 60%; float:right;">
+            <div class="pilihjurusan hide-on-print" style="width: 60%; float:right;">
                 <form action="" method="post">
                     <div class="form-group row">
-                        <label for="kd_kelas" class="col-2 col-form-label">Pilih Jurusan</label>
+                        <label for="jurusan" class="col-2 col-form-label">Cari Jurusan</label>
                         <div class="col-4">
-                            <select id="kd_kelas" name="kd_kelas" class="custom-select">
-                                <option value="B100" <?= $kd_kelas == 'B100' ? ' selected="selected"' : ''; ?>>10 Bahasa
-                                </option>
-                                <option value="B110" <?= $kd_kelas == 'B110' ? ' selected="selected"' : ''; ?>>11 Bahasa
-                                </option>
-                                <option value="B120" <?= $kd_kelas == 'B120' ? ' selected="selected"' : ''; ?>>12 Bahasa
-                                </option>
-                                <option value="M100" <?= $kd_kelas == 'M100' ? ' selected="selected"' : ''; ?>>10 MIPA
-                                </option>
-                                <option value="M110" <?= $kd_kelas == 'M110' ? ' selected="selected"' : ''; ?>>11 MIPA
-                                </option>
-                                <option value="M120" <?= $kd_kelas == 'M120' ? ' selected="selected"' : ''; ?>>12 MIPA
-                                </option>
-                                <option value="S100" <?= $kd_kelas == 'S100' ? ' selected="selected"' : ''; ?>>10 Sosial
-                                </option>
-                                <option value="S110" <?= $kd_kelas == 'S110' ? ' selected="selected"' : ''; ?>>11 Sosial
-                                </option>
-                                <option value="S120" <?= $kd_kelas == 'S120' ? ' selected="selected"' : ''; ?>>12 Sosial
-                                </option>
-                            </select>
+                        <input id="jurusan" name="jurusan" placeholder="Search" type="search" class="form-control">
                         </div>
                         <div class="buttons">
                             <button type="button" class="btn btn-danger" style="margin-right:10px;"><a
@@ -77,7 +58,7 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
                 </form>
             </div>
         </div>
-        <div class="list-siswa" id="printIndentTable">
+        <div class="list-anggota" id="printIndentTable">
             <table class="table table-bordered">
                 <thead class="thead-light">
                     <tr>
@@ -86,21 +67,19 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
                         <th scope="col">Nama</th>
                         <th scope="col">Jenis Kelamin</th>
                         <th scope="col">Alamat</th>
-                        <th scope="col">Kelas</th>
                         <th scope="col">Jurusan</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($siswa as $row) : ?>
+                    <?php foreach ($anggota as $row) : ?>
 
                     <tr>
                         <td><?= $i; ?></td>
-                        <td><?= $row["nis"]; ?></td>
+                        <td><?= $row["nim"]; ?></td>
                         <td><?= $row["nama"]; ?></td>
                         <td><?= $row["jns_kelamin"]; ?></td>
                         <td><?= $row["alamat"]; ?></td>
-                        <td><?= $row["tingkat"]; ?></td>
                         <td><?= $row["jurusan"]; ?></td>
                     </tr>
                     <?php $i++; ?>

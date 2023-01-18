@@ -38,7 +38,7 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
             <li><a class="active" href="">Menu Utama</a></li>
             <?php if($user_type){
             ?>
-            <li id="list-admin"><a href="data-admin.php">List Admin</a></li>
+            <li id="list-admin"><a href="core/admin/data-admin.php">List Admin</a></li>
             <?php } ?>
         </ul>
         </nav>
@@ -59,13 +59,13 @@ $user_type = $_SESSION['user_type'] == 'Super Admin';
                 </a>
             </div>
             <div class="data-spp" style="font-size: 20px;">
-                <a href="data-pembelian.php">
+                <a href="core/data-pembelian/data-pembelian.php">
                     <img src="assets/img/receipt.png" alt="">
                     <p>Pembelian Barang</p>
                 </a>
             </div>
             <div class="data-guru" style="font-size: 20px;">
-                <a href="data-barangterpakai.php">
+                <a href="core/data-barangterpakai/data-barangterpakai.php">
                     <img src="assets/img/teacher.png" alt="">
                     <p>Barang Terpakai</p>
                 </a>

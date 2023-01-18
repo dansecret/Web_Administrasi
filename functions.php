@@ -1,6 +1,6 @@
 <?php 
 // koneksi ke database
-$conn = mysqli_connect("localhost", "root", "", "sekolah_database");
+$conn = mysqli_connect("localhost", "root", "", "rscuad_database");
 
 
 function query($query) {
@@ -13,40 +13,32 @@ function query($query) {
 	return $rows;
 }
 
-function tambahSiswa($data) {
+function tambahAnggota($data) {
 	global $conn;
 
-	$nis = htmlspecialchars($data["nis"]);
+	$nim = htmlspecialchars($data["nim"]);
 	$nama = htmlspecialchars($data["nama"]);
 	$jns_kelamin = htmlspecialchars($data["jns_kelamin"]);
 	$alamat = htmlspecialchars($data["alamat"]);
-	$kd_kelas = htmlspecialchars($data["kd_kelas"]);
+	$jurusan = htmlspecialchars($data["jurusan"]);
 
-	$query = "INSERT INTO siswa
+	$query = "INSERT INTO anggota
 				VALUES
-			  ('$nis', '$nama', '$jns_kelamin', '$alamat', '$kd_kelas')
+			  ('$nim', '$nama', '$jns_kelamin', '$alamat', '$jurusan')
 			";
 	mysqli_query($conn, $query);
 
 	return mysqli_affected_rows($conn);
 }
 
-function tambahGuru($data) {
+function tambahBarang($data) {
 	global $conn;
 
-	$nip = htmlspecialchars($data["nip"]);
-	$nama = htmlspecialchars($data["nama"]);
-	$jns_kelamin = htmlspecialchars($data["jns_kelamin"]);
-	$tgl_lahir = htmlspecialchars($data["tgl_lahir"]);
-	$alamat = htmlspecialchars($data["alamat"]);
-	$no_telp = htmlspecialchars($data["no_telp"]);
-	$bidang_studi = htmlspecialchars($data["bidang_studi"]);
-	$kd_golongan = htmlspecialchars($data["kd_golongan"]);
+	$nama_barang = htmlspecialchars($data["nama_barang"]);
+	$deskripsi = htmlspecialchars($data["deskripsi"]);
+	$stock = htmlspecialchars($data["stock"]);
 
-	$query = "INSERT INTO guru
-				VALUES
-			  ('$nip', '$nama', '$jns_kelamin',  '$tgl_lahir','$alamat', '$no_telp', '$bidang_studi', '$kd_golongan')
-			";
+	$query = "INSERT INTO barang(nama_barang,deskripsi,stock) VALUES('$nama_barang', '$deskripsi',  '$stock')";
 	mysqli_query($conn, $query);
 
 	return mysqli_affected_rows($conn);
@@ -59,7 +51,7 @@ function tambahSpp($data) {
 	$tgl_bayar = htmlspecialchars($data["tgl_bayar"]);
 	$ket_bayar = htmlspecialchars($data["ket_bayar"]);
 	$total = htmlspecialchars($data["total"]);
-	$nis = htmlspecialchars($data["nis"]);
+	$nis = htmlspecialchars($data["nim"]);
 
 	$query = "INSERT INTO spp
 				VALUES
@@ -77,13 +69,13 @@ function tambahJadwal($data) {
 	$hari = htmlspecialchars($data["hari"]);
 	$waktu = htmlspecialchars($data["waktu"]);
 	$jmlh_jam = htmlspecialchars($data["jmlh_jam"]);
-	$kd_kelas = htmlspecialchars($data["kd_kelas"]);
+	$jurusan = htmlspecialchars($data["jurusan"]);
 	$nip = htmlspecialchars($data["nip"]);
 	$kd_mapel = htmlspecialchars($data["kd_mapel"]);
 
 	$query = "INSERT INTO jadwal_pelajaran
 				VALUES
-			  ('$kd_jadwal', '$hari', '$waktu',  '$jmlh_jam','$kd_kelas', '$nip', '$kd_mapel')
+			  ('$kd_jadwal', '$hari', '$waktu',  '$jmlh_jam','$jurusan', '$nip', '$kd_mapel')
 			";
 	mysqli_query($conn, $query);
 
@@ -133,14 +125,14 @@ function registrasi($data) {
 
 }
 
-function hapusSiswa($nis) {
+function hapusAnggota($nim) {
 	global $conn;
-	mysqli_query($conn, "DELETE FROM siswa WHERE nis = $nis");
+	mysqli_query($conn, "DELETE FROM anggota WHERE nim = $nim");
 	return mysqli_affected_rows($conn);
 }
-function hapusGuru($nip) {
+function hapusBarang($id_barang) {
 	global $conn;
-	mysqli_query($conn, "DELETE FROM guru WHERE nip = $nip");
+	mysqli_query($conn, "DELETE FROM barang WHERE id_barang = $id_barang");
 	return mysqli_affected_rows($conn);
 }
 function hapusSpp($no_kuitansi) {
@@ -175,24 +167,22 @@ function hapusAdmin($id) {
 	}
 }
 
-function ubahSiswa($data) {
+function ubahAnggota($data) {
 	global $conn;
 
-	$nis = htmlspecialchars($data["nis"]);
+	$nim = htmlspecialchars($data["nim"]);
 	$nama = htmlspecialchars($data["nama"]);
 	$jns_kelamin = htmlspecialchars($data["jns_kelamin"]);
 	$alamat = htmlspecialchars($data["alamat"]);
-	$kd_kelas = htmlspecialchars($data["kd_kelas"]);
+	$jurusan = htmlspecialchars($data["jurusan"]);
 
-	
-
-	$query = "UPDATE siswa SET
-				nis = '$nis',
+	$query = "UPDATE anggota SET
+				nim = '$nim',
 				nama = '$nama',
 				jns_kelamin = '$jns_kelamin',
 				alamat = '$alamat',
-				kd_kelas = '$kd_kelas'
-			  WHERE nis = $nis
+				jurusan = '$jurusan'
+			  WHERE nim = $nim
 			";
 
 	mysqli_query($conn, $query);
@@ -200,28 +190,19 @@ function ubahSiswa($data) {
 	return mysqli_affected_rows($conn);	
 }
 
-function ubahGuru($data) {
+function ubahBarang($data) {
 	global $conn;
 
-	$nip = htmlspecialchars($data["nip"]);
-	$nama = htmlspecialchars($data["nama"]);
-	$jns_kelamin = htmlspecialchars($data["jns_kelamin"]);
-	$tgl_lahir = htmlspecialchars($data["tgl_lahir"]);
-	$alamat = htmlspecialchars($data["alamat"]);
-	$no_telp = htmlspecialchars($data["no_telp"]);
-	$bidang_studi = htmlspecialchars($data["bidang_studi"]);
-	$kd_golongan = htmlspecialchars($data["kd_golongan"]);
+	$id_barang = htmlspecialchars($data["id_barang"]);
+	$nama_barang = htmlspecialchars($data["nama_barang"]);
+	$deskripsi = htmlspecialchars($data["deskripsi"]);
+	$stock = htmlspecialchars($data["stock"]);
 	
-	$query = "UPDATE guru SET
-				nip = '$nip',
-				nama = '$nama',
-				jns_kelamin = '$jns_kelamin',
-				tgl_lahir = '$tgl_lahir',
-				alamat = '$alamat',
-				no_telp = '$no_telp',
-				bidang_studi = '$bidang_studi',
-				kd_golongan = '$kd_golongan'
-			  WHERE nip = $nip
+	$query = "UPDATE barang SET
+				nama_barang = '$nama_barang',
+				deskripsi = '$deskripsi',
+				stock = '$stock'
+			  WHERE id_barang = $id_barang
 			";
 
 	mysqli_query($conn, $query);
@@ -257,7 +238,7 @@ function ubahJadwal($data) {
 	$hari = htmlspecialchars($data["hari"]);
 	$waktu = htmlspecialchars($data["waktu"]);
 	$jmlh_jam = htmlspecialchars($data["jmlh_jam"]);
-	$kd_kelas = htmlspecialchars($data["kd_kelas"]);
+	$jurusan = htmlspecialchars($data["jurusan"]);
 	$nip = htmlspecialchars($data["nip"]);
 	$kd_mapel = htmlspecialchars($data["kd_mapel"]);
 	
@@ -266,7 +247,7 @@ function ubahJadwal($data) {
 				hari = '$hari',
 				waktu = '$waktu',
 				jmlh_jam = '$jmlh_jam',
-				kd_kelas = '$kd_kelas',
+				jurusan = '$jurusan',
 				nip = '$nip',
 				kd_mapel = '$kd_mapel'
 			  WHERE kd_jadwal = $kd_jadwal

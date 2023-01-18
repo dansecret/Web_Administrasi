@@ -8,17 +8,17 @@ if (!isset($_SESSION["login"])) {
 require '../../functions.php';
 
 // ambil data di URL
-$nis = $_GET["nis"];
+$nim = $_GET["nim"];
 
 // query data mahasiswa berdasarkan id
-$siswa = query("SELECT * FROM siswa WHERE nis = $nis")[0];
+$anggota = query("SELECT * FROM anggota WHERE nim = $nim")[0];
 
 
 // cek apakah tombol submit sudah ditekan atau belum
 if (isset($_POST["submit"])) {
 
     // cek apakah data berhasil diubah atau tidak
-    if (ubahSiswa($_POST) > 0) {
+    if (ubahAnggota($_POST) > 0) {
         echo "
 			<script>
 				alert('data berhasil diubah!');
@@ -44,7 +44,7 @@ if (isset($_POST["submit"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ubah Data Siswa</title>
+    <title>Ubah Data Anggota</title>
     <link rel="stylesheet" href="assets/css/form.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -52,23 +52,23 @@ if (isset($_POST["submit"])) {
 
 <body>
     <header class="container">
-        <h3>Ubah Data Siswa</h3>
+        <h3>Ubah Data Anggota</h3>
     </header>
-    <section id="edit-data-siswa" class="container">
+    <section id="edit-data-anggota" class="container">
 
         <form action="" method="post" enctype="multipart/form-data">
             <div class="form-group row">
-                <label for="nis" class="col-4 col-form-label">NIS</label>
+                <label for="nim" class="col-4 col-form-label">NIM</label>
                 <div class="col-8">
-                    <input id="nis" name="nis" placeholder="masukkan nis siswa" type="text" class="form-control"
-                        required="required" value="<?= $siswa["nis"]; ?>">
+                    <input id="nim" name="nim" placeholder="Masukan Nim Anggota" type="text" class="form-control"
+                        required="required" value="<?= $anggota["nim"]; ?>">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="nama" class="col-4 col-form-label">Nama</label>
                 <div class="col-8">
-                    <input id="nama" name="nama" placeholder="masukkan nama siswa" type="text" class="form-control"
-                        required="required" value="<?= $siswa["nama"]; ?>">
+                    <input id="nama" name="nama" placeholder="Masukan Nama Anggota" type="text" class="form-control"
+                        required="required" value="<?= $anggota["nama"]; ?>">
                 </div>
             </div>
             <div class="form-group row">
@@ -77,13 +77,13 @@ if (isset($_POST["submit"])) {
                     <div class="custom-control custom-radio custom-control-inline">
                         <input name="jns_kelamin" id="jns_kelamin_0" type="radio" class="custom-control-input"
                             value="Laki-laki" required="required"
-                            <?php echo ($siswa['jns_kelamin'] == 'Laki-laki') ? 'checked' : '' ?>>
+                            <?php echo ($anggota['jns_kelamin'] == 'Laki-laki') ? 'checked' : '' ?>>
                         <label for="jns_kelamin_0" class="custom-control-label">Laki-laki</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
                         <input name="jns_kelamin" id="jns_kelamin_1" type="radio" class="custom-control-input"
                             value="Perempuan" required="required"
-                            <?php echo ($siswa['jns_kelamin'] == 'Perempuan') ? 'checked' : '' ?>>
+                            <?php echo ($anggota['jns_kelamin'] == 'Perempuan') ? 'checked' : '' ?>>
                         <label for="jns_kelamin_1" class="custom-control-label">Perempuan</label>
                     </div>
                 </div>
@@ -92,32 +92,14 @@ if (isset($_POST["submit"])) {
                 <label for="alamat" class="col-4 col-form-label">Alamat</label>
                 <div class="col-8">
                     <textarea id="alamat" name="alamat" cols="40" rows="3"
-                        class="form-control"><?php echo $siswa["alamat"]; ?></textarea>
+                        class="form-control"><?php echo $anggota["alamat"]; ?></textarea>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="kd_kelas" class="col-4 col-form-label">Kelas</label>
+                <label for="jurusan" class="col-4 col-form-label">Program Studi</label>
                 <div class="col-8">
-                    <select id="kd_kelas" name="kd_kelas" class="custom-select">
-                        <option value="B100" <?= $siswa['kd_kelas'] == 'B100' ? ' selected="selected"' : ''; ?>>10
-                            Bahasa</option>
-                        <option value="B110" <?= $siswa['kd_kelas'] == 'B110' ? ' selected="selected"' : ''; ?>>11
-                            Bahasa</option>
-                        <option value="B120" <?= $siswa['kd_kelas'] == 'B120' ? ' selected="selected"' : ''; ?>>12
-                            Bahasa</option>
-                        <option value="M100" <?= $siswa['kd_kelas'] == 'M100' ? ' selected="selected"' : ''; ?>>10 MIPA
-                        </option>
-                        <option value="M110" <?= $siswa['kd_kelas'] == 'M110' ? ' selected="selected"' : ''; ?>>11 MIPA
-                        </option>
-                        <option value="M120" <?= $siswa['kd_kelas'] == 'M120' ? ' selected="selected"' : ''; ?>>12 MIPA
-                        </option>
-                        <option value="S100" <?= $siswa['kd_kelas'] == 'S100' ? ' selected="selected"' : ''; ?>>10
-                            Sosial</option>
-                        <option value="S110" <?= $siswa['kd_kelas'] == 'S110' ? ' selected="selected"' : ''; ?>>11
-                            Sosial</option>
-                        <option value="S120" <?= $siswa['kd_kelas'] == 'S120' ? ' selected="selected"' : ''; ?>>12
-                            Sosial</option>
-                    </select>
+                    <input id="jurusan" name="jurusan" placeholder="Masukan Jurusan Anggota" type="text" class="form-control"
+                        required="required" value="<?= $anggota["jurusan"]; ?>">
                 </div>
             </div>
             <div class="form-group row">
